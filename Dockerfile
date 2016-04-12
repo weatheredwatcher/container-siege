@@ -13,7 +13,9 @@ RUN apt-get update && apt-get -y upgrade \
     && ./configure --with-ssl=$SSL_PATH \
     && make && make install \
     && cd / && rm siege-$SIEGE_VERSION* -r \
-    && apt-get purge -y wget make
+    && apt-get purge -y wget make \
+    && echo "proxy-host = 52.91.58.30" >> ~/.siege/siege.conf \
+    && echo "proxy-port = 8080" >> ~/.siege/siege.conf
 
 COPY urls.txt /urls.txt
 
